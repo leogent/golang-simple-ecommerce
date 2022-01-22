@@ -3,6 +3,7 @@ package repository
 import (
 	"log"
 	"os"
+	"simple-ecommerce/model"
 
 	"github.com/jinzhu/gorm"
 )
@@ -16,7 +17,7 @@ func DB() *gorm.DB {
 		return nil
 	}
 
-	//db.AutoMigrate(&model.User{}, &model.Product{}, &model.Order{})
+	db.AutoMigrate(&model.User{}, &model.Product{}, &model.Order{})
 	return db
 
 }

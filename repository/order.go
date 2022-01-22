@@ -20,11 +20,10 @@ func NewOrderRepository() OrderRepository {
 	}
 }
 
-
 func (db *orderRepository) OrderProduct(userID int, productID int, quantity int) error {
 	return db.connection.Create(&model.Order{
 		ProductID: uint(productID),
-		UserID: uint(userID),
-		Quantity: quantity
+		UserID:    uint(userID),
+		Quantity:  quantity,
 	}).Error
 }
