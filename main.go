@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	_ "simple-ecommerce/docs"
 	"simple-ecommerce/route"
 
 	"github.com/joho/godotenv"
