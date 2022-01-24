@@ -15,8 +15,12 @@ func GenerateToken(userid uint) string {
 		"userID": userid,
 	}
 
-	token := jwt.NewWithClaims(jwt.SigningMethodES256, claims)
-	t, _ := token.SignedString([]byte(os.Getenv("JWT_SECRET")))
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	t, err := token.SignedString([]byte(os.Getenv("JWT_SECRET")))
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	return t
 
 }

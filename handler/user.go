@@ -68,23 +68,30 @@ func (h *userHandler) GetUser(ctx *gin.Context) {
 }
 
 func (h *userHandler) SignInUser(ctx *gin.Context) {
-	var user model.User
-	if err := ctx.ShouldBindJSON(&user); err != nil {
+	//var user model.User
+
+	var credential struct {
+		Email    string
+		Password string
+	}
+
+	if err := ctx.ShouldBindJSON(&credential); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	dbUser, err := h.repo.GetByEmail(user.Email)
+	dbUser, err := h.repo.GetByEmail(credential.Email)
 
 	if err != nil {
 		ctx.JSON(http.StatusInternalServerError, gin.H{"msg": "No Such User Found"})
 		return
 	}
 
-	if isTrue := comparePassword(dbUser.Password, user.Password); isTrue {
+	if isTrue := comparePassword(dbUser.Password, credential.Password); isTrue {
 		fmt.Println("user before", dbUser.ID)
 
 		token := GenerateToken(dbUser.ID)
+
 		ctx.JSON(http.StatusOK, gin.H{"msg": "Successfully Signed In", "token": token})
 		return
 	}
