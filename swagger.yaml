@@ -1,17 +1,17 @@
-basePath: /
-consumes:
-- application/json
-host: some-url.com
-info:
-  description: Documentation of Simple Ecommerce API.
-  title: awesome.
-  version: 1.0.0
-paths: {}
-produces:
-- application/json
-schemes:
-- http
-securityDefinitions:
-  basic:
-    type: basic
+paths:
+  /api/products/:
+    get:
+      description: Returns 204 without content
+      operationId: products
+      responses:
+        "204":
+          description: Service available
+      summary: Check if the service is running.
+      tags:
+      - Get
+      - all
 swagger: "2.0"
+host : "localhost:8090"
+schemes:
+  - https
+  - http

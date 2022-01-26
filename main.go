@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	_ "simple-ecommerce/docs"
+	"os"
 	"simple-ecommerce/route"
 
 	"github.com/joho/godotenv"
@@ -15,7 +15,7 @@ func main() {
 	//loading environmental variable
 	loadenv()
 
-	log.Fatal(route.RunApi("localhost:8090"))
+	log.Fatal(route.RunApi(os.Getenv("BASE_URL")))
 
 }
 

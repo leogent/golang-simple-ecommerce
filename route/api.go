@@ -15,11 +15,15 @@ func RunApi(address string) error {
 
 	r := gin.Default()
 
-	r.GET("/", func(ctx *gin.Context) {
+	r.GET("api/", func(ctx *gin.Context) {
 		ctx.String(http.StatusOK, "Welcome to Our Store")
 	})
 
 	apiRoutes := r.Group("/api")
+	{
+		apiRoutes.GET("/products", productHandler.GetAllProduct)
+	}
+
 	userRoutes := apiRoutes.Group("/user")
 	{
 		userRoutes.POST("/register", userHandler.AddUser)
@@ -37,7 +41,7 @@ func RunApi(address string) error {
 
 	productRoutes := apiRoutes.Group("/products", middleware.AuthorizeJWT())
 	{
-		productRoutes.GET("/", productHandler.GetAllProduct)
+		//productRoutes.GET("/", productHandler.GetAllProduct)
 		productRoutes.GET("/:product", productHandler.GetProduct)
 		productRoutes.POST("/", productHandler.AddProduct)
 		productRoutes.PUT("/:product", productHandler.UpdateProduct)

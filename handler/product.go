@@ -27,6 +27,8 @@ func NewProductHandler() ProductHandler {
 	}
 }
 
+// swagger:operation GET /api/products/ Get all products
+// Check if the service is running.
 func (h *productHandler) GetAllProduct(ctx *gin.Context) {
 	product, err := h.repo.GetAllProduct()
 	if err != nil {
