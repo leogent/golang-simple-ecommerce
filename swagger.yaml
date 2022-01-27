@@ -1,4 +1,13 @@
 paths:
+  /api:
+    get:
+      description: |-
+        Welcome to GosCommerce
+        Returns 204 without content
+      operationId: Welcome
+      responses:
+        "204":
+          description: Service available
   /api/products/:
     get:
       description: Returns 204 without content
@@ -13,5 +22,4 @@ paths:
 swagger: "2.0"
 host : "localhost:8090"
 schemes:
-  - https
   - http

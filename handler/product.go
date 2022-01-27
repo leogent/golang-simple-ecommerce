@@ -29,6 +29,11 @@ func NewProductHandler() ProductHandler {
 
 // swagger:operation GET /api/products/ Get all products
 // Check if the service is running.
+// Returns 204 without content
+// ---
+// responses:
+//     '204':
+//         description: Service available
 func (h *productHandler) GetAllProduct(ctx *gin.Context) {
 	product, err := h.repo.GetAllProduct()
 	if err != nil {
